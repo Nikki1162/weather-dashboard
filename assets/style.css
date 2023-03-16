@@ -1,0 +1,10 @@
+body {
+    background-color: rgb(197, 218, 197);
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 1.5px;
+}
