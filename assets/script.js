@@ -43,6 +43,24 @@ let presentLocation = $(`
 function inFuture(lat, lon);
 
 // For loop
+let forecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${APIKey}`;
+
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(futureReturn){
+  console.log(futureReturn);
+
+  $("#forecast").empty();
+
+  for(let i = 1; i < 3; i++){
+    let atPresent = {
+      date: futureReturn.daily[i].dt,
+        icon: futureReturn.daily[i].weather[0].icon,
+        temp: futureReturn.daily[i].temp.day,
+        wind: futureReturn.daily[i].wind
+    }
+  };
 
 // Display info again
 
