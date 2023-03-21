@@ -1,11 +1,78 @@
-body {
-    background-color: rgb(197, 218, 197);
-}
-
-h1 {
-    font-size: 50px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #b7d8ce;
+  }
+  
+  h1 {
+    font-size: 75px;
     font-weight: 500;
-    color: white;
-    letter-spacing: ;
-}
+    color: #eef4f2;
+    letter-spacing: 2.4px;
+  }
 
+  h1:hover {
+    transform: scale(1.15);
+  }
+  
+  h2, h3, h4 {
+    color: #ffffff;
+  }
+  
+  .btn-primary{
+    background-color: #675777;
+    border-color: #675777;
+  }
+
+  .btn-primary:hover {
+    background-color: #bbb0c7;
+    border-color: #bbb0c7;
+  }
+  
+  #weather-result {
+    display: none;
+  }
+  
+  .navbar {
+    height: 120px!important;
+    background-color: #675777;
+  }
+
+  .input-group:hover {
+    box-shadow: 0 0 10px #f6f7f7;
+  }
+  
+  #search-results, #location-item,
+  .card {
+    background-color: #539380!important;
+  }
+  
+  #search-results {
+    height: 100vh;
+  }
+  
+  #five-day .card {
+    border: 3px solid rgb(240, 236, 242)!important;
+  }
+  
+  #search-history li {
+    background-color: #d8e3e296;
+    color: #dfc9f4!important;
+  }
+  
+  #search-history li:hover {
+    background-color: #5e6c6a;
+    cursor: pointer;
+  }
+  
+  p {
+    color: #343d3b;
+  }
+  
+  img{
+    width: 50px;
+  }

@@ -5,77 +5,79 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link rel="stylesheet" href="assets/style.css" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Chivo&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
   <title>Weather Dashboard</title>
 </head>
 
 <body>
   <section class="container-fluid">
-    <header class="row navbar navbar-dark bg-dark">
+
+    <header class="row navbar">
       <div class="col-12 text-center">
-        <h1>Weather Dashboard</h1>
-    </div>
-    </header>
-  </section>
-
-  <!-- max-width for ultra wide resolutions -->
-  <div class="row">
-    <div class="col-3 bg-light pb-2 pt-3" id="location-search">
-      <div class="row">
-        <div class="col-12">
-          <h4>Search for a location</h4>
-        </div>
+          <h1>Weather Dashboard</h1>
       </div>
+    </header>
 
-        <form id="search-form" class="form">
-          <div class="form-inline form-group">
+    <div class="row">
+      <div class="col-3 bg-light pb-2 pt-3" id="search-results">
+        <div class="row">
+          <div class="col-12">
+            <h4>Search a location:</h4>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12">
             <div class="input-group">
-              <input class="form-input weather-search" type="text" id="search-input" placeholder="Enter your chosen location"
-                aria-labelledby="form-heading" aria-controls="today forecast" />
-              <div class="input-group-append">
-                <button type="submit" class="btn search-button" id="search-button" aria-label="submit search">
-                  Search
-                </button>
-                <hr class="hr weather-hr" />
-              </div>
+              <input class="form-control" type="text" id="enter-city"
+              placeholder="Enter a location">
+              <button type="button" id="search-button"
+              class="btn btn-primary">Search</button>
             </div>
           </div>
-        </form>
-        <div class="list-group" id="history"></div>
-      </aside>
-
-      <div class="row mt-3">
-        <div class="col-12">
-
-          <ul id="search-history" class="list-group">
-          </ul>
-
         </div>
+
+        <div class="row mt-3">
+          <div class="col-12">
+
+            <ul id="search-history" class="list-group"></ul>
+
+          </div>
+        </div>
+      </div>
+
+      <div id="weather-result" class="col-9 pb-4 pt-4">
+        <div class="row pb-3 mr-2 ml-2">
+          <div id="location-item" class="col-12 border rounded px-3 py-3">
+          </div>
+        </div>
+
+        <div class="row pb-2 pt-1">
+          <div class="col-12 ml-2">
+            <h3>Upcoming forecast:</h3>
+          </div>
+        </div>
+
+        <div id="five-day" class="row pl-2">
+        </div>
+
       </div>
     </div>
+  </section>
 
-    <div id="weather-result" class="col-9 pb-4 pt-4">
-      <div class="row pb-3 mr-2 ml-2">
-        <div id="location-item" class="col-12 border rounded px-3 py-3">
-        </div>
-      </div>
-
-      <div class="row pb-2 pt-1">
-        <div class="col-12 ml-2">
-          <h3>Upcoming forecast</h3>
-        </div>
-      </div>
-
-      <div id="forecast" class="row pl-2">
-      </div>
-
-  <!-- Moment.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script src="assets/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/1d37754851.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 
-  </html>
+</html>

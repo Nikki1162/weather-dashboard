@@ -1,8 +1,8 @@
-// API Key for OpenWeatherMap
+// API key for OpenWeatherMap
 
-const APIKey = "aec9049ed82d9e41abe95c26c0050c22";
+const APIKey = "aec9049ed82d9e41abe95c26c0050c22"
 
-// Create variables to store inputs
+// Store input value
 
 let present = moment().format("(DD/MM/YYYY)");
 let previousSearchHistory = [];
@@ -12,26 +12,26 @@ let previousSearchHistory = [];
 function atPresent(city){
 
   let queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`;
-  $.ajax({
+    $.ajax({
     url: queryURL,
     method: "GET"
   }).then(function(presentReturn){
     console.log(presentReturn);
         
     $("#weather-result").css("display", "block");
-    $("#location-item").empty()
+    $("#location-item").empty();
         
     let weatherSymbol = presentReturn.weather[0].icon;
     let symbolURL = `https://openweathermap.org/img/w/${weatherSymbol}.png`;
 
-    // Display info pulled from API
+    // Display info
 
     let presentLocation = $(`
-      <h3 id="present-location">
-        ${presentReturn.name} ${present} <img src="${symbolURL}" alt="${presentReturn.weather[0].description}" /> </h3>
-      <p>Temp: ${presentReturn.main.temp} °c</p>
+      <h2 id="present-location">
+        ${presentReturn.name} ${today} <img src="${iconURL}" alt="${presentReturn.weather[0].description}" /> </h2>
+      <p>Temperature: ${presentReturn.main.temp} °c</p>
       <p>Humidity: ${presentReturn.main.humidity} %</p>
-      <p>Wind speeds: ${presentReturn.wind.speed} KmPH</p>
+      <p>Wind Speed: ${presentReturn.wind.speed} mph</p>
    `);
     let lat = presentReturn.coord.lat;
     let lon = presentReturn.coord.lon;
@@ -45,10 +45,9 @@ function atPresent(city){
 
 function inFuture(lat, lon){
 
-  // Five day forecast and for loop
-  //TODO look into why this won't render onto page
+  // For loop
 
-  let futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${APIKey}`;
+  let forecast = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${APIKey}`;
 
   $.ajax({
     url: futureURL,
@@ -56,10 +55,10 @@ function inFuture(lat, lon){
   }).then(function(futureReturn){
     console.log(futureReturn);
 
-    $("#five-day-forecast").empty();
+    $("#future-forecast").empty();
         
     for(let i = 1; i < 6; i++){
-      let locationInfo = {
+      let atPresent = {
         date: futureReturn.daily[i].dt,
         icon: futureReturn.daily[i].weather[0].icon,
         temp: futureReturn.daily[i].temp.day,
@@ -68,46 +67,50 @@ function inFuture(lat, lon){
 
       // Moment Unix tracks time passed
 
-      let upcomingDate = moment.unix(locationInfo.date).format("dd/mm/yyyy");
-      let symbolURL = `<img src="https://openweathermap.org/img/w/${locationInfo.icon}.png" alt="${futureReturn.daily[i].weather[0].main}" />`;
+      let upcomingDay = moment.unix(atPresent.date).format("DD/MM/YYYY");
+      let iconURL = `<img src="https://openweathermap.org/img/w/${atPresent.icon}.png" alt="${futureReturn.daily[i].weather[0].main}" />`;
 
-      // Displays upcoming forecast in a card
-
+      //displays info below in future card
       let forecastCard = $(`
         <div class="pl-3">
           <div class="card pl-3 pt-3 mb-3 bg-primary text-light" style="width: 12rem";>
             <div class="card-body">
-              <h4>${upcomingDate}</h4>
-              <p>${symbolURL}</p>
-              <p>Temp: ${locationInfo.temp} °c</p>
-              <p>Humidity: ${locationInfo.humidity} %</p>                           
+              <h5>${upcomingDay}</h5>
+              <p>${iconURL}</p>
+              <p>Temp: ${atPresent.temp} °C</p>
+              <p>Humidity: ${atPresent.humidity}%</p>                           
             </div>
           </div>
         </div>
       `);
-      $("#five-day-forecast").append(forecastCard);
+
+      $("#forecast").append(forecastCard);
     }
   }); 
 }
 
-// Event listener upon enter key press
+// Event listener upon any key press
 
 $("#input-location").keypress(function(e){
+  //keyCode 13 is the "Enter" key
   if(e.keyCode === 13){
     e.preventDefault();
     $("#search-button").click();
   }
 });
 
-//add event listener on click button
+// Event listener upon clicking button
+
 $("#search-button").on("click", function(e){
   e.preventDefault();
 
-  let city = $("#input-location").val().trim();
-  //clear input box
+  let place = $("#input-location").val().trim();
+  
+  // Clear search bar
+
   $("#input-location").val("");
 
-  atPresent(city);
+  currentConditions(city);
   if (!previousSearchHistory.includes(city)){
     previousSearchHistory.push(city);
     let searchCity = $(`
@@ -115,25 +118,28 @@ $("#search-button").on("click", function(e){
       `);
     $("#search-history").prepend(searchCity);
   };
+
+  // Use local storage to allow user to access search history
   
-  localStorage.setItem("city", JSON.stringify(previousSearchHistory));
-  console.log(previousSearchHistory);
+  localStorage.setItem("city", JSON.stringify(searchHistoryList));
+  console.log(searchHistoryList);
 });
 
-//presented with current and future conditions for new entry city
+// Render current weather and future forecast for searched location
+
 $(document).on("click", ".list-group-item", function(){
   let listCity = $(this).text();
-  atPresent(listCity);
+  currentConditions(listCity);
 });
 
-//displays previous searched when reload page .ready
+// Previous location or search can be accessed on page reload
 $(document).ready(function(){
-  let searchHistoryArr = JSON.parse(localStorage.getItem("city"));
+  let previousSearchHistory = JSON.parse(localStorage.getItem("city"));
 
   if (searchHistoryArr !== null) {
-    let previousIndex = searchHistoryArr.length - 1;
-    let previousCity = searchHistoryArr[previousIndex];
-    atPresent(previousCity);
-    console.log(`Previous searched city: ${previousCity}`);
+    let lastIndex = searchHistoryArr.length - 1;
+    let lastSearch = searchHistoryArr[lastIndex];
+    currentConditions(lastSearch);
+    console.log(`Search history: ${lastSearch}`);
   }
 });
