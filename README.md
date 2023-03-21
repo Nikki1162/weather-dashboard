@@ -33,8 +33,7 @@ I tweaked some of the CSS to improve my own learning, although this wasn't part 
 
 ## **Result**
 
-![This is what the live application looks like when you open the app within the browser](assets/images/Calendar-app-screenshot.png)
-![A further image of the live application](assets/images/Calendar-app-screenshot2.png)
+![This is what the live application looks like when you open the app within the browser](assets/images/weather-dashboard-screenshot.png)
 
 ## **Links**
 
