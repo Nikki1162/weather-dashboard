@@ -1,6 +1,6 @@
 // API Key for OpenWeatherMap
 
-const APIKey = "aec9049ed82d9e41abe95c26c0050c22";
+const APIKey = "56648bf4b101d43094c1a3ba05aae06d";
 
 // Create variables to store inputs
 
@@ -16,7 +16,7 @@ function atPresent(city){
     url: queryURL,
     method: "GET"
   }).then(function(presentReturn){
-    console.log(presentReturn);
+    console.log("first API call", presentReturn);
         
     $("#weather-result").css("display", "block");
     $("#location-item").empty()
@@ -36,6 +36,8 @@ function atPresent(city){
     let lat = presentReturn.coord.lat;
     let lon = presentReturn.coord.lon;
 
+    console.log("coords", lat, lon);
+
     $("#location-item").append(presentLocation);
     inFuture(lat, lon);
   });
@@ -50,11 +52,13 @@ function inFuture(lat, lon){
 
   let futureURL = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=current,minutely,hourly,alerts&appid=${APIKey}`;
 
+  // let futureURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIKey}`;
+
   $.ajax({
     url: futureURL,
     method: "GET"
   }).then(function(futureReturn){
-    console.log(futureReturn);
+    console.log("future API call", futureReturn);
 
     $("#five-day-forecast").empty();
         
@@ -99,12 +103,16 @@ $("#input-location").keypress(function(e){
   }
 });
 
-//add event listener on click button
+// Event listener upon click button
+
 $("#search-button").on("click", function(e){
   e.preventDefault();
 
   let city = $("#input-location").val().trim();
-  //clear input box
+  console.log("city", city);
+
+  // Clear field
+
   $("#input-location").val("");
 
   atPresent(city);
@@ -120,13 +128,15 @@ $("#search-button").on("click", function(e){
   console.log(previousSearchHistory);
 });
 
-//presented with current and future conditions for new entry city
+// Presented with current and future conditions for new entry city
+
 $(document).on("click", ".list-group-item", function(){
   let listCity = $(this).text();
   atPresent(listCity);
 });
 
-//displays previous searched when reload page .ready
+// Displays search history
+
 $(document).ready(function(){
   let searchHistoryArr = JSON.parse(localStorage.getItem("city"));
 
