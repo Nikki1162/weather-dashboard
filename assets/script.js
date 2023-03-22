@@ -63,7 +63,7 @@ function inFuture(lat, lon){
     $("#five-day-forecast").empty();
         
     for(let i = 1; i < 6; i++){
-      let locationInfo = {
+      let locationItem = {
         date: futureReturn.daily[i].dt,
         icon: futureReturn.daily[i].weather[0].icon,
         temp: futureReturn.daily[i].temp.day,
@@ -72,19 +72,19 @@ function inFuture(lat, lon){
 
       // Moment Unix tracks time passed
 
-      let upcomingDate = moment.unix(locationInfo.date).format("dd/mm/yyyy");
-      let symbolURL = `<img src="https://openweathermap.org/img/w/${locationInfo.icon}.png" alt="${futureReturn.daily[i].weather[0].main}" />`;
+      let upcomingDate = moment.unix(locationItem.date).format("dd/mm/yyyy");
+      let symbolURL = `<img src="https://openweathermap.org/img/w/${locationItem.icon}.png" alt="${futureReturn.daily[i].weather[0].main}" />`;
 
       // Displays upcoming forecast in a card
 
       let forecastCard = $(`
         <div class="pl-3">
-          <div class="card pl-3 pt-3 mb-3 bg-primary text-light" style="width: 12rem";>
+          <div class="card pl-3 pt-3 mb-3 bg-primary text-light" style="width: 10rem";>
             <div class="card-body">
               <h4>${upcomingDate}</h4>
               <p>${symbolURL}</p>
-              <p>Temp: ${locationInfo.temp} °c</p>
-              <p>Humidity: ${locationInfo.humidity} %</p>                           
+              <p>Temp: ${locationItem.temp} °c</p>
+              <p>Humidity: ${locationItem.humidity} %</p>                           
             </div>
           </div>
         </div>
