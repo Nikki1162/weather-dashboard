@@ -31,6 +31,9 @@ In order to create a user friendly and functioning app, I needed to include the 
 
 I tweaked some of the CSS to improve my own learning, although this wasn't part of the challenge that was set.
 
+## **Challenges**
+I really struggled to get the five day forecast working. I considered that it may be to do with the API key, as when I console logged 'future API call' after the second API call, I didn't even seem to be able to reach that point of execution in the code. This is something that I still have not been able to get working as of yet.
+
 ## **Result**
 
 ![This is what the live application looks like when you open the app within the browser](assets/images/weather-dashboard-screenshot.png)
