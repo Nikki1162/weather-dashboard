@@ -12,7 +12,7 @@
     font-size: 75px;
     font-weight: 500;
     color: #eef4f2;
-    letter-spacing: 2.4px;
+    font-family: Josefin Sans;
   }
 
   h1:hover {
@@ -20,12 +20,15 @@
   }
   
   h2, h3, h4 {
-    color: #ffffff;
+    color: #eff5f2;
+    font-weight: bolder;
+    font-family: Cardo;
   }
   
   .btn-primary{
     background-color: #675777;
     border-color: #675777;
+    font-family: Open Sans;
   }
 
   .btn-primary:hover {
@@ -42,37 +45,39 @@
     background-color: #675777;
   }
 
+  .input-group {
+    font-family: Open Sans;
+  }
+
   .input-group:hover {
-    box-shadow: 0 0 10px #f6f7f7;
+    border-color: #ffffff !important;
+    box-shadow: 0 0 10px #e4eae9 !important;
   }
   
-  #search-results, #location-item,
+  #search-section, #location-item,
   .card {
-    background-color: #539380!important;
+    background-color: #6e9b8d!important;
   }
   
-  #search-results {
+  #search-section {
     height: 100vh;
   }
   
-  #five-day .card {
-    border: 3px solid rgb(240, 236, 242)!important;
+  #five-day-forecast .card {
+    border: 1px solid rgb(108, 90, 117)!important;
   }
   
   #search-history li {
-    background-color: #d8e3e296;
-    color: #dfc9f4!important;
+    background-color: #c9d9d196;
+    color: #9d8aad!important;
   }
   
   #search-history li:hover {
-    background-color: #5e6c6a;
-    cursor: pointer;
+    background-color: #3b214d;
   }
   
   p {
-    color: #343d3b;
-  }
-  
-  img{
-    width: 50px;
+    color: #cadcd2;
+    font-family: Playfair Display;
+    font-weight: bold;
   }
