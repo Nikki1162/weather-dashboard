@@ -33,7 +33,7 @@ I tweaked some of the CSS to improve my own learning, although this wasn't part 
 
 ## **Result**
 
-![This is what the live application looks like when you open the app within the browser](assets/images/weather-dashboard-screenshot.png)
+![This is what the live application looks like when you open the app within the browser](assets/images/weather-dash-SS.png)
 
 ## **Links**
 
