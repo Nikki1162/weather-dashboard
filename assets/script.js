@@ -1,6 +1,6 @@
 // API Key for OpenWeatherMap
 
-const APIKey = "56648bf4b101d43094c1a3ba05aae06d";
+const APIKey = "d89aeb407c99b041045acf5eb4090fe5";
 
 // Create variables to store inputs
 
