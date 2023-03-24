@@ -72,7 +72,7 @@ function inFuture(lat, lon){
 
       // Moment Unix tracks time passed
 
-      let upcomingDate = moment.unix(locationItem.date).format("dd/mm/yyyy");
+      let upcomingDate = moment.unix(locationItem.date).format("DD/MM/YYYY");
       let symbolURL = `<img src="https://openweathermap.org/img/w/${locationItem.icon}.png" alt="${futureReturn.daily[i].weather[0].main}" />`;
 
       // Displays upcoming forecast in a card
